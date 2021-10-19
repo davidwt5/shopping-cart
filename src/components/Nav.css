@@ -1,0 +1,17 @@
+nav {
+  min-height: 10vh;
+  background-color: rgb(142, 142, 147);
+  display: flex;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  list-style: none;
+}
+
+.nav-links > a {
+  color: white;
+  text-decoration: none;
+}
