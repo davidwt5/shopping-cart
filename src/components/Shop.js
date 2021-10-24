@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import ProductOverview from "./ProductOverview";
 import "./Shop.css";
 
+// If an item's quantity is 0, then it shouldnt be in the cart
+
 function Shop() {
   const [products, setProduct] = useState([]);
   const [cart, setCart] = useState([]); // Cart is empty initially. No persistence.
@@ -17,26 +19,24 @@ function Shop() {
     fetchProducts();
   }, []);
 
-  // Initialise cart
-  useEffect(() => {
-    products.forEach((p) => {
-      setCart((prevCart) => [...prevCart, { id: p.id, quantity: 0 }]);
-    });
-  }, [products]);
-
   function addQuantity(productId) {
     const cartCopy = [...cart];
-    const i = cartCopy.findIndex((p) => p.id === productId);
+    let i = cartCopy.findIndex((p) => p.id === productId);
+    // If entry doesn't exist, create new entry
+    if (i === -1) {
+      cartCopy.push({ id: productId, quantity: 0 });
+      i = cartCopy.length - 1;
+    }
     cartCopy[i].quantity++;
     setCart(cartCopy);
   }
 
   function subtractQuantity(productId) {
     const cartCopy = [...cart];
-    const i = cartCopy.findIndex((p) => p.id === productId);
-    cartCopy[i].quantity <= 0
-      ? (cartCopy[i].quantity = 0)
-      : cartCopy[i].quantity--;
+    let i = cartCopy.findIndex((p) => p.id === productId);
+    // Exit if the entry doesn't exist
+    if (i === -1) return;
+    cartCopy[i].quantity === 1 ? cartCopy.splice(i, 1) : cartCopy[i].quantity--;
     setCart(cartCopy);
   }
 
@@ -51,10 +51,11 @@ function Shop() {
             name={p.title}
             price={p.price}
             img={p.image}
+            // Render quantity 0 if item is not in cart.
             quantity={
               cart.find((e) => e.id === p.id)
                 ? cart.find((e) => e.id === p.id).quantity
-                : ""
+                : 0
             }
             addQuantity={addQuantity}
             subtractQuantity={subtractQuantity}
