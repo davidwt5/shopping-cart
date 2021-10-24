@@ -4,6 +4,7 @@ import "./Shop.css";
 
 function Shop() {
   const [products, setProduct] = useState([]);
+  const [cart, setCart] = useState([]); // Cart is empty initially. No persistence.
 
   // Fetches the products
   useEffect(() => {
@@ -12,12 +13,15 @@ function Shop() {
       const products = await response.json();
       setProduct(products);
     }
+
     fetchProducts();
   }, []);
 
-  // Console log when products is updated
+  // Initialise cart
   useEffect(() => {
-    console.log(products);
+    products.forEach(p => {
+      setCart((prevCart) => [...prevCart, {id: p.id, quantity: 0}]);
+    });
   }, [products]);
 
   return (
@@ -26,6 +30,7 @@ function Shop() {
       <div className="products">
         {products.map((p) => (
           <ProductOverview
+            key={p.id}
             id={p.id}
             name={p.title}
             price={p.price}
