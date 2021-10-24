@@ -24,6 +24,22 @@ function Shop() {
     });
   }, [products]);
 
+  function addQuantity(productId) {
+    const cartCopy = [...cart];
+    const i = cartCopy.findIndex((p) => p.id === productId);
+    cartCopy[i].quantity++;
+    setCart(cartCopy);
+  }
+
+  function subtractQuantity(productId) {
+    const cartCopy = [...cart];
+    const i = cartCopy.findIndex((p) => p.id === productId);
+    cartCopy[i].quantity <= 0
+      ? (cartCopy[i].quantity = 0)
+      : cartCopy[i].quantity--;
+    setCart(cartCopy);
+  }
+
   return (
     <div className="shop">
       <h1>Browsing all products</h1>
@@ -35,7 +51,13 @@ function Shop() {
             name={p.title}
             price={p.price}
             img={p.image}
-            quantity={cart.find((e) => e.id === p.id).quantity}
+            quantity={
+              cart.find((e) => e.id === p.id)
+                ? cart.find((e) => e.id === p.id).quantity
+                : ""
+            }
+            addQuantity={addQuantity}
+            subtractQuantity={subtractQuantity}
           />
         ))}
       </div>
