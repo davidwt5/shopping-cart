@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import ProductOverview from "./ProductOverview";
 import "./Shop.css";
 
-// If an item's quantity is 0, then it shouldnt be in the cart
-
 function Shop() {
-  const [products, setProduct] = useState([]);
   const [cart, setCart] = useState([]); // Cart is empty initially. No persistence.
+  const [products, setProduct] = useState([]);
 
   // Fetches the products
   useEffect(() => {
@@ -62,6 +60,13 @@ function Shop() {
           />
         ))}
       </div>
+
+      {/* <ShoppingCart
+        products={products}
+        cart={cart}
+        addQuantity={addQuantity}
+        subtractQuantity={subtractQuantity}
+      /> */}
     </div>
   );
 }

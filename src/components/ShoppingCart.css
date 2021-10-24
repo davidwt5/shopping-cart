@@ -1,0 +1,6 @@
+.shopping-cart {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 20rem;
+  border: 1px solid red;
+}

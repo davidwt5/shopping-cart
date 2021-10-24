@@ -1,0 +1,10 @@
+.shopping-cart-entry {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.shopping-cart-entry > img {
+  width: 80%;
+  height: 80%;
+}

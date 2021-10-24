@@ -1,8 +1,15 @@
-import "./ProductOverview.css";
+import "./ShoppingCartEntry.css"
 
-function ProductOverview(props) {
-  const { id, name, img, price, quantity, addQuantity, subtractQuantity } =
-    props;
+function ShoppingCartEntry(props) {
+  const {
+    id,
+    name,
+    img,
+    quantity,
+    pricePerUnit,
+    addQuantity,
+    subtractQuantity,
+  } = props;
 
   function addHandler(e) {
     addQuantity(Number(e.currentTarget.parentNode.dataset.id));
@@ -13,10 +20,9 @@ function ProductOverview(props) {
   }
 
   return (
-    <div className="product-overview" data-id={id}>
-      <p className="name">{name}</p>
+    <li className="shopping-cart-entry" data-id={id}>
+      <p>{name}</p>
       <img src={img} alt={name} />
-      <p className="price">${price}</p>
       <button type="button" onClick={subtractHandler}>
         -
       </button>
@@ -24,8 +30,9 @@ function ProductOverview(props) {
       <button type="button" onClick={addHandler}>
         +
       </button>
-    </div>
+      <p>Price: {pricePerUnit * quantity}</p>
+    </li>
   );
 }
 
-export default ProductOverview;
+export default ShoppingCartEntry;
