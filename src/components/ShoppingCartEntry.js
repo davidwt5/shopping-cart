@@ -23,6 +23,7 @@ function ShoppingCartEntry(props) {
     <li className="shopping-cart-entry" data-id={id}>
       <p>{name}</p>
       <img src={img} alt={name} />
+      <p className="price">Price: {pricePerUnit * quantity}</p>
       <button type="button" onClick={subtractHandler}>
         -
       </button>
@@ -30,7 +31,6 @@ function ShoppingCartEntry(props) {
       <button type="button" onClick={addHandler}>
         +
       </button>
-      <p>Price: {pricePerUnit * quantity}</p>
     </li>
   );
 }

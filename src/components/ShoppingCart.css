@@ -2,5 +2,10 @@
   display: flex;
   flex-flow: column nowrap;
   width: 20rem;
-  border: 1px solid red;
+  position: fixed;
+  border: 1px solid black;
+  top: 0;
+  right: 0;
+  background-color: white;
+  overflow: scroll;
 }

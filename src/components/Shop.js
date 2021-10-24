@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ProductOverview from "./ProductOverview";
+import ShoppingCart from "./ShoppingCart";
 import "./Shop.css";
 
 function Shop() {
@@ -61,12 +62,12 @@ function Shop() {
         ))}
       </div>
 
-      {/* <ShoppingCart
+      <ShoppingCart
         products={products}
         cart={cart}
         addQuantity={addQuantity}
         subtractQuantity={subtractQuantity}
-      /> */}
+      />
     </div>
   );
 }
