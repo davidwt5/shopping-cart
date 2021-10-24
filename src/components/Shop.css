@@ -1,0 +1,10 @@
+.shop > h1 {
+  text-align: center;
+}
+
+.shop > .products {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  
+}
