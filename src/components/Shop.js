@@ -19,8 +19,8 @@ function Shop() {
 
   // Initialise cart
   useEffect(() => {
-    products.forEach(p => {
-      setCart((prevCart) => [...prevCart, {id: p.id, quantity: 0}]);
+    products.forEach((p) => {
+      setCart((prevCart) => [...prevCart, { id: p.id, quantity: 0 }]);
     });
   }, [products]);
 
@@ -35,6 +35,7 @@ function Shop() {
             name={p.title}
             price={p.price}
             img={p.image}
+            quantity={cart.find((e) => e.id === p.id).quantity}
           />
         ))}
       </div>
